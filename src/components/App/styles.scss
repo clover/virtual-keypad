@@ -1,0 +1,109 @@
+@import url('https://bootswatch.com/4/spacelab/bootstrap.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans:wght@400;700&family=Roboto+Mono&display=swap');
+
+* {
+  touch-action: manipulation;
+}
+
+.container {
+  font-size: 0.8rem;
+  padding: 0.5rem;
+  font-family: 'Noto Sans', sans-serif;
+  max-width: 768px;
+}
+
+.maxwidth {
+  max-width: 400px;
+}
+
+.form-group {
+  label {
+    font-weight: bold;
+  }
+
+  input {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.72rem;
+    padding: 0.4rem;
+  }
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  border-color: #5fa32c;
+  background-color: #5fa32c;
+}
+
+.list-group-item {
+  padding: 0.5rem 0.75rem;
+}
+
+.dropdown-menu {
+  box-shadow: 0 5px 10px black;
+}
+
+.card {
+  background-color: #484944;
+  color: #e6ebe7;
+}
+
+.card-header {
+  padding: 0.5rem;
+  padding-bottom: 0;
+  border-bottom: 0;
+  display: flex;
+
+  .Logo path {
+    fill: #5fa42d;
+  }
+
+  h3 {
+    font-family: 'Archivo Black', cursive;
+    font-weight: bold;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.8);
+    opacity: 0.5;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3), 0 -1px 1px rgba(0, 0, 0, 0.3);
+    margin-bottom: 0;
+    line-height: 30px;
+    flex-grow: 1;
+    padding-left: 0.5rem;
+  }
+
+  .Power {
+    margin-top: -3px;
+
+    fill: #09070c;
+  }
+}
+
+.card-body {
+  padding: 0.5rem;
+  padding-bottom: 0;
+}
+
+.card-footer {
+  padding: 0.5rem;
+  border-top: 0;
+}
+
+.react-toast-notifications__toast__content {
+  overflow-x: auto;
+  overflow-y: auto;
+  max-width: 100%;
+  max-height: 75vh;
+  scroll-behavior: smooth;
+}
+
+.react-toast-notifications__container.expanded {
+  overflow-x: auto;
+  overflow-y: auto;
+
+  > div {
+    height: auto !important;
+  }
+
+  .react-toast-notifications__toast {
+    width: auto;
+    max-width: 100vw;
+  }
+}
