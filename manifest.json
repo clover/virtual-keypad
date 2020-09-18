@@ -1,0 +1,15 @@
+{
+  "short_name": "Clover Keypad",
+  "name": "Clover Virtual Keypad",
+  "icons": [
+    {
+      "src": "clover_logo_144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
