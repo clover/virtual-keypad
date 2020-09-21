@@ -1,6 +1,6 @@
 import React, { useCallback, useState, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Card, CardHeader, CardBody, CardFooter } from 'reactstrap';
+import { Button, Collapse, Card, CardHeader, CardBody, CardFooter } from 'reactstrap';
 import { useTranslation } from 'react-i18next';
 
 import { configure, selectConfiguration, selectConfigurationLoading } from '../../store';
@@ -21,6 +21,8 @@ export default () => {
   const [accessToken, setAccessToken] = useState(configuration.accessToken);
   const [raid, setRaid] = useState(configuration.raid);
   const [friendlyId, setFriendlyId] = useState(configuration.friendlyId);
+  const [expanded, setExpanded] = useState(false);
+  const toggle = useCallback(() => setExpanded(cur => !cur), [setExpanded]);
 
   const [submitting, setSubmitting] = useState(false);
 
@@ -69,52 +71,57 @@ export default () => {
         {!loading && (
           <>
             <CardBody>
-              <TextField
-                id="cloverDomain"
-                type="url"
-                value={cloverDomain}
-                onChange={setCloverDomain}
-                disabled={disabled}
-                required
-              />
-              <TextField
-                id="merchantId"
-                pattern="^[a-zA-Z0-9]{13}$"
-                maxLength="13"
-                value={merchantId}
-                onChange={setMerchantId}
-                disabled={disabled}
-                required
-              />
-              <TextField
-                id="employeeId"
-                pattern="^[a-zA-Z0-9]{13}$"
-                maxLength="13"
-                value={employeeId}
-                onChange={setEmployeeId}
-                disabled={disabled}
-              />
-              <TextField
-                id="raid"
-                pattern="^[a-zA-Z0-9 .]{1,255}$"
-                value={raid}
-                onChange={setRaid}
-                disabled={disabled}
-                required
-              />
-              <TextField
-                id="accessToken"
-                pattern="^[a-fA-F0-9]{8}(-?[a-fA-F0-9]{4}){3}-?[a-fA-F0-9]{12}$"
-                value={accessToken}
-                onChange={setAccessToken}
-                disabled={disabled}
-                required
-              />
-              <TextField id="friendlyId" value={friendlyId} onChange={setFriendlyId} disabled={disabled} />
+              <Button type="button" size="sm" className="w-100 mb-2" color="dark" onClick={toggle}>
+                {t('Configuration')} {expanded ? '▲' : '▼'}
+              </Button>
+              <Collapse isOpen={expanded}>
+                <TextField
+                  id="cloverDomain"
+                  type="url"
+                  value={cloverDomain}
+                  onChange={setCloverDomain}
+                  disabled={disabled}
+                  required
+                />
+                <TextField
+                  id="merchantId"
+                  pattern="^[a-zA-Z0-9]{13}$"
+                  maxLength="13"
+                  value={merchantId}
+                  onChange={setMerchantId}
+                  disabled={disabled}
+                  required
+                />
+                <TextField
+                  id="employeeId"
+                  pattern="^[a-zA-Z0-9]{13}$"
+                  maxLength="13"
+                  value={employeeId}
+                  onChange={setEmployeeId}
+                  disabled={disabled}
+                />
+                <TextField
+                  id="raid"
+                  pattern="^[a-zA-Z0-9 .]{1,255}$"
+                  value={raid}
+                  onChange={setRaid}
+                  disabled={disabled}
+                  required
+                />
+                <TextField
+                  id="accessToken"
+                  pattern="^[a-fA-F0-9]{8}(-?[a-fA-F0-9]{4}){3}-?[a-fA-F0-9]{12}$"
+                  value={accessToken}
+                  onChange={setAccessToken}
+                  disabled={disabled}
+                  required
+                />
+                <TextField id="friendlyId" value={friendlyId} onChange={setFriendlyId} disabled={disabled} />
+              </Collapse>
             </CardBody>
             <CardFooter>
               <Button type="submit" color="success" disabled={disabled}>
-                {t('Submit')}
+                {t('Connect')}
               </Button>
               <Button type="reset" color="secondary" className="ml-2" disabled={disabled}>
                 {t('Reset')}

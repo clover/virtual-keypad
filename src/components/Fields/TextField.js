@@ -31,17 +31,18 @@ export default ({
         {help && (
           <>
             <Button
+              type="button"
               id={`${id}-btn`}
               color="secondary"
               outline
               size="sm"
               className="float-right p-0 px-2"
               title="Help"
-              onClick={toggle}
+              onFocus={toggle}
             >
               ?
             </Button>
-            <Popover isOpen={show} toggle={toggle} target={`${id}-btn`}>
+            <Popover trigger="focus" isOpen={show} toggle={toggle} target={`${id}-btn`}>
               <PopoverHeader>{label} Help</PopoverHeader>
               <PopoverBody>
                 <Markdown source={help} linkTarget="_blank" />
