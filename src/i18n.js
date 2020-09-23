@@ -8,7 +8,7 @@ export default i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    fallbackLng: ['en', 'de-DE', 'fr-CA', 'nl-NL'],
+    fallbackLng: ['en', 'de-DE', 'es-AR', 'fr-CA', 'nl-NL'],
     debug: false,
     keySeparator: '~',
     nsSeparator: false,
