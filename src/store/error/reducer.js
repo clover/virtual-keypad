@@ -13,6 +13,18 @@ export default (state = initialState, { type, payload }) => {
         important: payload.important,
       };
     case '@@connector/onDeviceError':
+      if (
+        payload.code === 'Interrupted' &&
+        payload.type === 'COMMUNICATION' &&
+        payload.message?.includes('FORCECONNECT')
+      ) {
+        return {
+          ...state,
+          message: 'Forcefully disconnected by another connection to the same device.',
+          stack: JSON.stringify(payload, null, 2),
+          important: undefined,
+        };
+      }
       return {
         ...state,
         message: `Device Error ${payload.message}`,
