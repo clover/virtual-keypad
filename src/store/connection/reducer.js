@@ -38,6 +38,22 @@ export default (state = initialState, { type, payload }) => {
         connector: payload,
         connected: false,
       };
+    case '@@connector/onDeviceError':
+      if (
+        payload.code === 'Interrupted' &&
+        payload.type === 'COMMUNICATION' &&
+        payload.message?.includes('FORCECONNECT')
+      ) {
+        try {
+          if (state.connector?.dispose) {
+            state.connector.dispose();
+          }
+        } catch (e) {
+          // ignore errors
+        }
+        return initialState;
+      }
+      return state;
     case '@@connector/onDeviceDisconnected':
       return { ...state, connected: false };
     case '@@connector/onDeviceReady': {

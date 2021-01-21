@@ -168,7 +168,15 @@ export default (state = initialState, { type, payload }) => {
       }
       return state;
     }
-
+    case '@@connector/onDeviceError':
+      if (
+        payload.code === 'Interrupted' &&
+        payload.type === 'COMMUNICATION' &&
+        payload.message?.includes('FORCECONNECT')
+      ) {
+        return initialState;
+      }
+      return state;
     default:
       return state;
   }
