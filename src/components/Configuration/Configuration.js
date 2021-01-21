@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import { configure, selectConfiguration, selectConfigurationLoading } from '../../store';
 import { selectVisible } from './selectors';
-import { TextField } from '../Fields';
+import { CheckboxField, TextField } from '../Fields';
 import { Logo } from '../SVG';
 
 export default () => {
@@ -21,6 +21,7 @@ export default () => {
   const [accessToken, setAccessToken] = useState(configuration.accessToken);
   const [raid, setRaid] = useState(configuration.raid);
   const [friendlyId, setFriendlyId] = useState(configuration.friendlyId);
+  const [forceConnect, setForceConnect] = useState(configuration.forceConnect);
   const [expanded, setExpanded] = useState(false);
   const toggle = useCallback(() => setExpanded(cur => !cur), [setExpanded]);
 
@@ -28,17 +29,22 @@ export default () => {
 
   const disabled = useMemo(() => loading || submitting, [loading, submitting]);
 
+  console.log({ forceConnect });
+
   const submit = useCallback(
     async event => {
       try {
+        console.log('submit', { forceConnect });
         event.preventDefault();
         setSubmitting(true);
-        await dispatch(configure({ cloverDomain, merchantId, employeeId, accessToken, raid, friendlyId }));
+        await dispatch(
+          configure({ cloverDomain, merchantId, employeeId, accessToken, raid, friendlyId, forceConnect })
+        );
       } finally {
         setSubmitting(false);
       }
     },
-    [dispatch, cloverDomain, merchantId, employeeId, accessToken, raid, friendlyId]
+    [dispatch, cloverDomain, merchantId, employeeId, accessToken, raid, friendlyId, forceConnect]
   );
 
   const reset = useCallback(
@@ -50,8 +56,18 @@ export default () => {
       setAccessToken(configuration.accessToken);
       setRaid(configuration.raid);
       setFriendlyId(configuration.friendlyId);
+      setForceConnect(configuration.forceConnect);
     },
-    [configuration, setCloverDomain, setMerchantId, setEmployeeId, setAccessToken, setRaid, setFriendlyId]
+    [
+      configuration,
+      setCloverDomain,
+      setMerchantId,
+      setEmployeeId,
+      setAccessToken,
+      setRaid,
+      setFriendlyId,
+      setForceConnect,
+    ]
   );
 
   if (!visible) return null;
@@ -117,6 +133,13 @@ export default () => {
                   required
                 />
                 <TextField id="friendlyId" value={friendlyId} onChange={setFriendlyId} disabled={disabled} />
+                <CheckboxField
+                  id="forceConnect"
+                  label="Force Connect"
+                  checked={forceConnect}
+                  onChange={() => setForceConnect(!forceConnect)}
+                  mb0
+                />
               </Collapse>
             </CardBody>
             <CardFooter>

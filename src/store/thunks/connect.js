@@ -17,7 +17,7 @@ export default deviceId => async (dispatch, getState) => {
     const state = getState();
     persist(state);
 
-    const { cloverDomain, merchantId, raid, accessToken, friendlyId } = selectConfiguration(state);
+    const { cloverDomain, merchantId, raid, accessToken, friendlyId, forceConnect } = selectConfiguration(state);
     const device = selectDevices(state).find(d => d.id === deviceId);
 
     if (!device) throw new Error(`Device not found`);
@@ -31,6 +31,7 @@ export default deviceId => async (dispatch, getState) => {
       new Clover.WebSocketCloudCloverDeviceConfigurationBuilder(raid, deviceId, merchantId, accessToken)
         .setCloverServer(cloverDomain)
         .setFriendlyId(friendlyId)
+        .setForceConnect(forceConnect)
         .build()
     );
 

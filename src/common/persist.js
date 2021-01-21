@@ -5,6 +5,7 @@ export default ({ configuration, devices }) =>
   Storage.set({
     configuration: {
       ...configuration,
+      forceConnect: undefined,
       loading: undefined,
     },
     devices: {

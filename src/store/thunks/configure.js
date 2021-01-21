@@ -7,19 +7,21 @@ import { setDevices } from '../devices/actions';
 import { clearError, setError } from '../error/actions';
 import { setEmployee, setPermissions } from '../settings/actions';
 
-export default ({ cloverDomain, merchantId, employeeId, raid, accessToken, friendlyId }) => async (
+export default ({ cloverDomain, merchantId, employeeId, raid, accessToken, friendlyId, forceConnect }) => async (
   dispatch,
   getState
 ) => {
   try {
     await dispatch({
       type: 'configure',
-      payload: { cloverDomain, merchantId, employeeId, raid, accessToken, friendlyId },
+      payload: { cloverDomain, merchantId, employeeId, raid, accessToken, friendlyId, forceConnect },
     });
     await dispatch(clearError());
     await dispatch(setConfigurationLoading());
 
-    await dispatch(setConfiguration({ cloverDomain, merchantId, employeeId, raid, accessToken, friendlyId }));
+    await dispatch(
+      setConfiguration({ cloverDomain, merchantId, employeeId, raid, accessToken, friendlyId, forceConnect })
+    );
     persist(getState());
 
     const devices = await fetchDevices({ cloverDomain, merchantId, raid, employeeId, accessToken });

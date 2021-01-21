@@ -27,5 +27,6 @@ export default {
   accessToken: hash.access_token || storage?.configuration?.accessToken || '',
   raid: qs.raid || storage?.configuration?.raid || '',
   friendlyId: storage?.configuration?.friendlyId || 'Virtual Keypad',
+  forceConnect: false,
   loading: undefined,
 };

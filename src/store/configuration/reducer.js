@@ -22,6 +22,7 @@ export default (state = initialState, { type, payload }) => {
         raid: payload.raid || '',
         accessToken: payload.accessToken || '',
         friendlyId: payload.friendlyId || '',
+        forceConnect: payload.forceConnect || false,
       };
     default:
       return state;
