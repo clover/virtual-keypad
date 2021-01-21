@@ -31,6 +31,10 @@
       "label": "Friendly ID",
       "help": "The Friendly ID is an **optional** value.\n\n###### Example:\n\n`Virtual Keypad`"
     },
+    "forceConnect": {
+      "label": "Force Connect",
+      "help": "Only one connection can be made to a device at a time.  Forcefully disconnect any active connections before connecting."
+    },
 
     "Configuration": "Configuration",
     "Connect": "Connect",

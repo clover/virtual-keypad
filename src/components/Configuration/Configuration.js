@@ -29,12 +29,9 @@ export default () => {
 
   const disabled = useMemo(() => loading || submitting, [loading, submitting]);
 
-  console.log({ forceConnect });
-
   const submit = useCallback(
     async event => {
       try {
-        console.log('submit', { forceConnect });
         event.preventDefault();
         setSubmitting(true);
         await dispatch(
@@ -135,7 +132,8 @@ export default () => {
                 <TextField id="friendlyId" value={friendlyId} onChange={setFriendlyId} disabled={disabled} />
                 <CheckboxField
                   id="forceConnect"
-                  label="Force Connect"
+                  label={t(`forceConnect~label`)}
+                  help={t(`forceConnect~help`)}
                   checked={forceConnect}
                   onChange={() => setForceConnect(!forceConnect)}
                   mb0
