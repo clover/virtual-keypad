@@ -28,7 +28,7 @@
     "reactstrap": "^8.5.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "remote-pay-cloud": "^3.1.0",
+    "remote-pay-cloud": "3.2.2",
     "reselect": "^4.0.0",
     "sass": "^1.32.5"
   },
